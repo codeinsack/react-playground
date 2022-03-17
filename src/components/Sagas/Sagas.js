@@ -1,13 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { ActionType } from "../../redux-store/action-types";
+import { useEffect } from "react";
 
 const Sagas = () => {
   const dispatch = useDispatch();
+  const entries = useSelector((state) => state.entries);
 
-  return (
-    <div>
-      <button onClick={() => dispatch({ type: "TEST_MESSAGE" })}>Take</button>
-    </div>
-  );
+  console.log("entries", entries);
+
+  useEffect(() => {
+    dispatch({ type: ActionType.GET_ENTRIES });
+  }, [dispatch]);
+
+  return <div>Hello World!</div>;
 };
 
 export default Sagas;

@@ -30,3 +30,12 @@ export const fetchCountries = () => {
     });
   };
 };
+
+export const getEntries = () => ({
+  type: ActionType.GET_ENTRIES,
+});
+
+export const populateEntries = (entries) => ({
+  type: ActionType.POPULATE_ENTRIES,
+  payload: entries,
+});

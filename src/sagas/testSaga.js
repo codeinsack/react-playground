@@ -1,17 +1,25 @@
-import { take } from "redux-saga/effects";
+import { take, delay, put, call } from "redux-saga/effects";
 
+function double(number) {
+  return number * 2;
+}
+
+// take effect
 export function* testSaga() {
   while (true) {
-    console.log("Saga is started");
-    yield take("TEST_MESSAGE");
-    console.log("Saga is finished");
+    const state = yield take("TEST_MESSAGE");
+    const withCall = yield call(double, 12);
+    console.log("withCall", withCall);
+    const withoutCall = yield double(3);
+    console.log("withoutCall", withoutCall);
+    console.log(state);
   }
 }
 
-export function* count() {
-  yield 1;
-  yield 2;
-  yield 3;
-  yield 4;
-  yield 5;
-}
+// put effect
+// export function* dispatchTest() {
+//   while (true) {
+//     yield delay(1000);
+//     yield put({ type: "TEST_MESSAGE", payload: "Hello World" });
+//   }
+// }
